@@ -1,4 +1,5 @@
 import React from 'react';
+import { Switch, Route } from 'react-router-dom';
 import { TrafficLightComponent } from '../../components/index.js';
 
 export class TrafficLightContainer extends React.Component {
@@ -7,7 +8,7 @@ export class TrafficLightContainer extends React.Component {
     render() {
         return (
             <div className="container">
-                <TrafficLightContainer />
+                <TrafficLightComponent loc={this.props.location.pathname} />
             </div>
         )
     }

@@ -1,17 +1,17 @@
 .wrapper {
     height: 100%;
-    width: 80rem;
+    width: 40rem;
     margin: 0 auto 0 auto;
+    border-radius: 2px;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
-    border: 1px solid red;
+    background: #151515;
 }
 
 .circle {
     width: 15rem;
     height: 15rem;
     border-radius: 50%;
-    border: 1px solid blue;
 }
