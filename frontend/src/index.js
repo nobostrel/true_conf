@@ -1,14 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { TrafficLightContainer } from './containers/index.js';
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import { WithRouterTrafficLightContainer } from './containers/index.js';
+import { HashRouter } from 'react-router-dom';
 import './index.css';
 
 ReactDOM.render(
-    <BrowserRouter>
-        <Switch>
-            <TrafficLightContainer />
-        </Switch>
-    </BrowserRouter>,
+    <HashRouter >
+        <WithRouterTrafficLightContainer />
+    </HashRouter>,
     document.querySelector(".root")
 );
