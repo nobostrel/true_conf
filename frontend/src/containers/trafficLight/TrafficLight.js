@@ -7,63 +7,65 @@ class TrafficLightContainer extends React.Component {
         paths: [
             {
                 path: '/red',
-                time: 2000
+                time: 10000
             },
             {
                 path: '/yellow',
-                time: 2000
+                time: 3000
             },
             {
                 path: '/green',
-                time: 2000
+                time: 15000
             }
         ],
         reverse: false
     }
 
-    componentDidMount() {
-        if (window.location.pathname === '/') this.props.history.push('/red');
+    componentDidMount = () => {
+        if (window.location.pathname === '/')
+            this.props.history.push('/red');
     }
 
-    componentDidUpdate(prevProps) {
-        if (this.props.location.pathname !== prevProps.location.pathname) {
-            if (!this.state.reverse) {
-                this.standartChange();
-            } else {
-                this.reverseChange();
-            }
+    componentDidUpdate = () => {
+        console.log('sdf')
+        if (this.state.reverse) {
+            this.reverseChange();
+        } else {
+            this.standartChange();
         }
     }
 
     standartChange = () => {
-        for (let i = 0; i < this.state.paths.length; i++) {
-            if (this.state.paths[i].path === this.props.history.location.pathname) {
-                if (i < this.state.paths.length - 1) {
-                    this.setTimer(this.state.paths[i + 1].path, this.state.paths[i].time);
-                } else if (i + 1 >= this.state.paths.length - 1) {
-                    this.setState(() => { reverse: true });
+        this.state.paths.forEach((item, index) => {
+            if (item.path === this.props.history.location.pathname) {
+                if (index < this.state.paths.length - 1) {
+                    this.setTime(this.state.paths[index + 1].path, item.time);
+                } else {
+                    this.setState({ reverse: true });
                 }
             }
-        }
+        });
     }
 
     reverseChange = () => {
-        for (let i = this.state.paths.length - 1; i <= 0; i--) {
+        for (let i = this.state.paths.length - 1; i >= 0; i--) {
             if (this.state.paths[i].path === this.props.history.location.pathname) {
                 if (i > 0) {
-                    this.setTimer(this.state.paths[i - 1].path, this.state.paths[i].time);
+                    console.log('1')
+                    this.setTime(this.state.paths[i - 1].path, this.state.paths[i].time);
                 } else {
-                    this.setState(() => { reverse: false });
+                    this.setState({ reverse: false });
                 }
             }
         }
     }
 
-    setTimer = (path, time) => {
+    setTime = (path, time) => {
         setTimeout(() => {
             this.props.history.push(path);
         }, time);
     }
+
 
 
     render() {
