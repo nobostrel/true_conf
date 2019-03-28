@@ -22,6 +22,7 @@ export const TrafficLightComponent = props => {
                     opacity: props.color === 'green' ? 1 : 0.1
                 }
             } ></div>
+            <div className="timer">{props.timer}</div>
         </div>
     )
 }

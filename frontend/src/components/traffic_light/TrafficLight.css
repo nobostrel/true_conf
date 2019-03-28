@@ -1,4 +1,5 @@
 .wrapper {
+    position: relative;
     height: 100%;
     width: 40rem;
     margin: 0 auto 0 auto;
@@ -14,4 +15,13 @@
     width: 15rem;
     height: 15rem;
     border-radius: 50%;
+}
+
+.timer {
+    position: absolute;
+    left: 1rem;
+    top: 1rem;
+    font-size: 2rem;
+    color: burlywood;
+    font-weight: 600;
 }
