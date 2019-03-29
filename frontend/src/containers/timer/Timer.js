@@ -6,6 +6,12 @@ export class TimerContainer extends Component {
         time: null
     }
 
+    componentDidMount = () => {
+        this.setState({ time: this.props.time }, () => {
+            this.interval();
+        });
+    }
+
     componentWillReceiveProps = nextProps => {
         this.setState({ time: nextProps.time }, () => {
             clearInterval(this.int);
