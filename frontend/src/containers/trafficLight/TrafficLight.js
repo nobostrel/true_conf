@@ -1,12 +1,19 @@
 import React from 'react';
-import { Route, withRouter, Switch } from 'react-router-dom';
-import { TrafficLightComponent, } from '../../components/index.js';
-import { TimerContainer } from '../index.js';
+import {
+    Route,
+    withRouter,
+    Switch
+} from 'react-router-dom';
+import {
+    TrafficLightComponent,
+} from '../../components/index.js';
+import {
+    TimerContainer
+} from '../index.js';
 
 class TrafficLightContainer extends React.Component {
     state = {
-        paths: [
-            {
+        paths: [{
                 path: '/red',
                 time: 10
             },
@@ -29,6 +36,7 @@ class TrafficLightContainer extends React.Component {
     }
 
     componentDidUpdate = (prevProps, prevState) => {
+        clearTimeout(this.timeToChange);
         if (this.state.reverse) {
             this.reverseChange();
         } else {
@@ -42,7 +50,9 @@ class TrafficLightContainer extends React.Component {
                 if (index < this.state.paths.length - 1) {
                     this.setTime(this.state.paths[index + 1].path, item.time);
                 } else {
-                    this.setState({ reverse: true });
+                    this.setState({
+                        reverse: true
+                    });
                 }
             }
         });
@@ -54,14 +64,16 @@ class TrafficLightContainer extends React.Component {
                 if (i > 0) {
                     this.setTime(this.state.paths[i - 1].path, this.state.paths[i].time);
                 } else {
-                    this.setState({ reverse: false });
+                    this.setState({
+                        reverse: false
+                    });
                 }
             }
         }
     }
 
     setTime = (path, time) => {
-        setTimeout(() => {
+        this.timeToChange = setTimeout(() => {
             this.props.history.push(path);
         }, time * 1000);
     }
@@ -77,26 +89,52 @@ class TrafficLightContainer extends React.Component {
     };
 
     render() {
-        return (
-            <div className="container">
-                <Switch>
-                    <Route exact path="/red" render={() =>
-                        <TrafficLightComponent color='red'>
-                            <TimerContainer time={this.setTimeToComponent()} />
-                        </TrafficLightComponent>
-                    } />
-                    <Route exact path="/yellow" render={() =>
-                        <TrafficLightComponent color='yellow'>
-                            <TimerContainer time={this.setTimeToComponent()} />
-                        </TrafficLightComponent>
-                    } />
-                    <Route exact path="/green" render={() =>
-                        <TrafficLightComponent color='green'>
-                            <TimerContainer time={this.setTimeToComponent()} />
-                        </TrafficLightComponent>
-                    } />
-                </Switch>
-            </div>
+        return ( <
+            div className = "container" >
+            <
+            Switch >
+            <
+            Route exact path = "/red"
+            render = {
+                () =>
+                <
+                TrafficLightComponent color = 'red' >
+                <
+                TimerContainer time = {
+                    this.setTimeToComponent()
+                }
+                /> < /
+                TrafficLightComponent >
+            }
+            /> <
+            Route exact path = "/yellow"
+            render = {
+                () =>
+                <
+                TrafficLightComponent color = 'yellow' >
+                <
+                TimerContainer time = {
+                    this.setTimeToComponent()
+                }
+                /> < /
+                TrafficLightComponent >
+            }
+            /> <
+            Route exact path = "/green"
+            render = {
+                () =>
+                <
+                TrafficLightComponent color = 'green' >
+                <
+                TimerContainer time = {
+                    this.setTimeToComponent()
+                }
+                /> < /
+                TrafficLightComponent >
+            }
+            /> < /
+            Switch > <
+            /div>
         )
     }
 }
